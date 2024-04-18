@@ -1,0 +1,47 @@
+﻿@model List<Student>
+
+<h1>Students Enrolled in Programming1</h1>
+
+@if (Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Teacher Name</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.StudentName</td>
+                    <td>
+                        @if (student.StudentTeacher != null && student.StudentTeacher.Any())
+                        {
+                            foreach (var teacher in student.StudentTeacher)
+                            {
+                                <div>@teacher.Teacher.TeacherName</div>
+                            }
+                        }
+                        else
+                        {
+                            <div>No teacher assigned</div>
+                        }
+                    </td>
+                    <td>
+                        <form asp-controller="Students" asp-action="UpdateProgramming1Teacher" method="post">
+                            <input type="hidden" name="studentId" value="@student.StudentId" />
+                            <button type="submit" class="btn btn-primary">Update Teacher to Tobias</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No students enrolled in Programming1.</p>
+}

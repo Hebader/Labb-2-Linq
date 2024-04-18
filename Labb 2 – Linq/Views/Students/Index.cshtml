@@ -1,0 +1,37 @@
+﻿@model IEnumerable<StudentTeacher>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Students and Their Teachers</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .table th, .table td {
+            padding: 8px; /* Anpassa storleken på utrymmet mellan cellerna efter behov */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>List of Students and Their Teachers</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th style="padding-left: 20px;">Teacher</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var studentTeacher in Model)
+                {
+                    <tr>
+                        <td>@studentTeacher.Student.StudentName</td>
+                        <td>@studentTeacher.Teacher.TeacherName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
